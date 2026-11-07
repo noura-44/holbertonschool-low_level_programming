@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 /**
  * main - simple calculator menu that repeats until the user quits
  *
@@ -8,11 +7,8 @@
 int main(void)
 {
 	int choice,  a, b;
-
 	choice = -1;
-
 	printf("Simple Calculator\n");
-
 	while (choice != 0)
 	{
 		printf("1) Add\n");
@@ -21,9 +17,7 @@ int main(void)
 		printf("4) Divide\n");
 		printf("0) Quit\n");
 		printf("Choice: ");
-
 		scanf("%d", &choice);
-
 		if (choice == 0)
 			printf("Bye!\n");
 		else if (choice == 1)
@@ -38,7 +32,6 @@ int main(void)
 		else if (choice == 2)
 		{
 		printf("Subtract\n");
-		 
                         printf("A: ");
                         scanf("%d", &a);
                         printf("B: ");
@@ -48,24 +41,23 @@ int main(void)
 		else if (choice == 3)
 		{
 		 printf("Multiply\n");
-
                         printf("A: ");
                         scanf("%d", &a);
                         printf("B: ");
                         scanf("%d", &b);
                         printf("Result: %d\n", a * b);
-	
 		}
 		else if (choice == 4)
 		  {
                  printf("Divide\n");
-
                         printf("A: ");
                         scanf("%d", &a);
                         printf("B: ");
                         scanf("%d", &b);
-                        printf("Result: %d\n", a / b);
-
+			if (b == 0)
+			printf("Error: division by zero");
+			else 
+			printf("Result: %d\n", a / b);
                 }   
 		
 		else
