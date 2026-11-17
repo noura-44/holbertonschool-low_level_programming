@@ -1,26 +1,35 @@
+
 #include <stdlib.h>
 #include "dog.h"
 
 /**
- * copy_str - makes a copy of a string in newly allocated memory
- * @s: the string to copy
+ * copy_string - copies a string into new memory
+ * @str: string to copy
  *
- * Return: a pointer to the copy, or NULL if malloc fails.
+ * Return: pointer to the copy, or NULL
  */
-char *copy_str(char *s)
+static char *copy_string(char *str)
 {
-	char *c;
-	int len, i;
+	char *copy;
+	int i;
 
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-	c = malloc((len + 1) * sizeof(char));
-	if (c == NULL)
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+
+	copy = malloc((i + 1) * sizeof(char));
+	if (copy == NULL)
 		return (NULL);
-	for (i = 0; i <= len; i++)
-		c[i] = s[i];
-	return (c);
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		copy[i] = str[i];
+		i++;
+	}
+	copy[i] = '\0';
+
+	return (copy);
 }
 
 /**
@@ -29,30 +38,36 @@ char *copy_str(char *s)
  * @age: the age of the dog
  * @owner: the name of the owner
  *
- * Return: a pointer to the new dog, or NULL on failure.
+ * Return: pointer to the new dog, or NULL
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *d;
+	dog_t *dog;
 
 	if (name == NULL || owner == NULL)
 		return (NULL);
-	d = malloc(sizeof(dog_t));
-	if (d == NULL)
+
+	dog = malloc(sizeof(dog_t));
+	if (dog == NULL)
 		return (NULL);
-	d->name = copy_str(name);
-	if (d->name == NULL)
+
+	dog->name = copy_string(name);
+	if (dog->name == NULL)
 	{
-		free(d);
+		free(dog);
 		return (NULL);
 	}
-	d->owner = copy_str(owner);
-	if (d->owner == NULL)
+
+	dog->owner = copy_string(owner);
+	if (dog->owner == NULL)
 	{
-		free(d->name);
-		free(d);
+		free(dog->name);
+		free(dog);
 		return (NULL);
 	}
-	d->age = age;
-	return (d);
+
+	dog->age = age;
+
+	return (dog);
 }
+
